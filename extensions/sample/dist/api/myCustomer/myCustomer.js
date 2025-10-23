@@ -12,10 +12,9 @@ export default (async (request, response, next)=>{
     let client = null;
     try {
         client = await getConnection();
-        // Carica indirizzi e ordini in parallelo
         const [addresses, orders] = await Promise.all([
             getCustomerAddresses(current.customer_id, client),
-            getOrders(current.customer_id, client)
+            getCustomerOrders(current.customer_id, client)
         ]);
         response.status(200).json({
             success: true,
@@ -38,9 +37,9 @@ export default (async (request, response, next)=>{
     }
 });
 async function getCustomerAddresses(customer_id, client) {
-    return select().from("customer_address").where("customer_id", "=", customer_id).load(client);
+    return select().from("customer_address").where("customer_id", "=", customer_id).execute(client, false);
 }
-async function getOrders(customer_id, client) {
-    return select().from("orders").where("customer_id", "=", customer_id).andWhere("status", "=", "new").load(client);
+async function getCustomerOrders(customer_id, client) {
+    return select().from("order").where("customer_id", "=", customer_id).andWhere("status", "=", "new").execute(client, false);
 }
 
