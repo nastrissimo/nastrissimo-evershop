@@ -32,7 +32,7 @@ jobs:
 
       - name: Compile project
         run: |
-          npm ci --production
+          npm ci
           npm run build --workspaces && npm run build
         continue-on-error: false
 
