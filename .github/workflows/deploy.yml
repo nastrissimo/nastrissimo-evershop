@@ -30,11 +30,6 @@ jobs:
           node-version: 22
           cache: 'npm'
 
-      - name: Verify workspace setup
-        run: |
-          npm config get workspace
-          npm workspaces list
-
       - name: Compile project
         run: |
           npm ci
