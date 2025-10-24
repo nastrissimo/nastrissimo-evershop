@@ -4,9 +4,12 @@
   "type": "module",
   "private": true,
   "workspaces": [
-    "extensions/*"
+    "extensions/*",
+    "themes/*"
   ],
   "scripts": {
+    "clean": "rimraf --glob .evershop/build extensions/*/dist themes/*/dist",
+    "clean:all": "npm run clean --if-present && rimraf --glob node_modules",
     "setup": "evershop install",
     "start": "evershop start",
     "build": "evershop build",
@@ -25,7 +28,9 @@
     "@types/node": "^24.9.1",
     "@types/pg": "^8.15.5",
     "@types/react": "^19.2.2",
+    "cross-env": "^10.1.0",
     "execa": "^9.6.0",
+    "rimraf": "^6.0.1",
     "typescript": "^5.9.3"
   }
 }

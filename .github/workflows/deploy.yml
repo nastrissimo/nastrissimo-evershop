@@ -32,9 +32,8 @@ jobs:
 
       - name: Compile project
         run: |
-          npm ci
-          npm run compile --workspaces
-          npm run build
+          npm ci --production
+          npm run build --workspaces && npm run build
         continue-on-error: false
 
       # - name: Install FTP client
