@@ -35,9 +35,6 @@ bower_components
 # node-waf configuration
 .lock-wscript
 
-# EverShop config
-config/
-
 # Evershop media
 media/
 
